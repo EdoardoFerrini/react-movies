@@ -1,9 +1,10 @@
 import IndividualMovie from "./IndividualMovie";
 import { movieDTO } from "./movies.model";
+import css from "./MovieList.module.css";
 
 export default function MoviesList(props: moviesListProps) {
   return (
-    <div>
+    <div className={css.div}>
       {props.movies.map((movie) => (
         <IndividualMovie {...movie} key={movie.id} />
       ))}
