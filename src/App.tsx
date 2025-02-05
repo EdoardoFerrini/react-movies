@@ -36,12 +36,12 @@ function App() {
   });
 
   return (
-    <>
+    <div className="container">
       <h2>In Theathers</h2>
       <MoviesList movies={movies.inTheaters} />
       <h2>Upcoming Releases</h2>
       <MoviesList movies={movies.upcomingReleases} />
-    </>
+    </div>
   );
 }
 
