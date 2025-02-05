@@ -1,62 +1,20 @@
-import { useEffect, useState } from "react";
-import { landingPageDTO } from "./movies/movies.model";
-import MoviesList from "./movies/MoviesList";
 import Menu from "./Menu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import IndexGenres from "./genres/IndexGenres";
+import routes from "./route-config";
 
 function App() {
-  const [movies, setMovies] = useState<landingPageDTO>({});
-
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      setMovies({
-        inTheaters: [
-          {
-            id: 1,
-            title: "Spider-Man: Far From Home",
-            poster:
-              "https://posterspy.com/wp-content/uploads/2019/07/Farfromhome3D.jpg",
-          },
-          {
-            id: 2,
-            title: "Interstellar",
-            poster:
-              "https://posterspy.com/wp-content/uploads/2024/12/INTERSTELLAR-NO-MUR.jpg",
-          },
-        ],
-        upcomingReleases: [
-          {
-            id: 3,
-            title: "Inception",
-            poster:
-              "https://posterspy.com/wp-content/uploads/2024/05/inception.jpg",
-          },
-        ],
-      });
-    }, 4000);
-    return () => clearTimeout(timerId);
-  });
-
   return (
     <BrowserRouter>
       <Menu />
       <div className="container">
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <h2>In Theathers</h2>
-                <MoviesList movies={movies.inTheaters} />
-
-                <h2>Upcoming Releases</h2>
-                <MoviesList movies={movies.upcomingReleases} />
-              </>
-            }
-          />
-
-          <Route path="/genres" element={<IndexGenres />} />
+          {routes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={<route.component />}
+            ></Route>
+          ))}
         </Routes>
       </div>
     </BrowserRouter>
