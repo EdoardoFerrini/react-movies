@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { landingPageDTO } from "./movies/movies.model";
 import MoviesList from "./movies/MoviesList";
+import Menu from "./Menu";
 
 function App() {
   const [movies, setMovies] = useState<landingPageDTO>({});
@@ -36,12 +37,15 @@ function App() {
   });
 
   return (
+    <>
+    <Menu />
     <div className="container">
       <h2>In Theathers</h2>
       <MoviesList movies={movies.inTheaters} />
       <h2>Upcoming Releases</h2>
       <MoviesList movies={movies.upcomingReleases} />
     </div>
+    </>
   );
 }
 
